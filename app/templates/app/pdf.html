@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="pt">
+    <div class="container mt-5">
+        <div align="center">
+            <h6>INVOICE : {{data.pid}}</h6>
+        </div>
+        <div align="right">
+            {% for s in seller  %}
+            <h2 class="display-4"><b><i>{{s.name}}</i></b></h2>
+            <p>
+                {{s.phone}}
+                <br>
+                {{s.email}}
+                <br>
+                {{s.address}}
+            </p>
+            {% endfor %}
+        </div>
+
+        <div align="left">
+            <h2 class="display-4">Customer</h2>
+            <p>
+            	Customer Name : {{data.bname}}
+                <br>
+                Phone : {{data.bphone}}
+				<br>
+                Adress : {{data.baddress}}
+            </p>
+        </div>
+
+        
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;"
+                        width="34%" height="33" align="center">Item/Description</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;"
+                        width="30%" align="center">Quantity</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;"
+                        width="30%" align="center">Price</td>
+                </tr>
+                <tr>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;"
+                        height="100" align="center">{{data.pid}}.{{data.pname}}</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;"
+                        align="center">{{data.pquantity}}</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-right:1px solid #333;"
+                        align="center">{{data.pprice}}</td>
+                </tr>
+                <tr>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:400; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;"
+                        width="34%" height="32" align="center">TOTAL</td>
+                    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;"
+                        width="30%" align="center" colspan="2">{{data.ptotal}}</td>
+                </tr>
+            </table>
+            </td>
+            </tr>
+
+        </table>
+        <br>
+        <h5 align="center">Thankyou for Shoping with us.</h5>
+        <hr>
+        <button onclick="invoice('pt')" class="btn btn-success mt-3"><h3 class="display-6">Get Bill</h3></button>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    function invoice(pa) {
+        var bk = document.body.innerHTML;
+        var dv = document.getElementById(pa).innerHTML;
+        document.body.innerHTML = dv;
+        window.print();
+    }
+
+</script>
+
+{% endblock %}

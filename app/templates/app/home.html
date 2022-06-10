@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block banner %}
+
+<div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+  <div class="col-md-6 px-0">
+    <h1 class="display-4 fst-italic">ShopKart </h1>
+    {% if request.user.is_authenticated %}
+    <h1 class="display-5 fst-italic" align="right">Hello {{request.user}}! </h1>
+    {% endif %}
+
+
+    <p class="lead my-3"> The One-stop Shopping Destination. E-commerce is revolutionizing the way we all shop in India.</p>
+
+    
+
+  </div>
+
+</div>
+{% endblock banner %}
+
+{% block content %}
+<div>
+  <h1 class="display-4 text-center">Our Products</h1>
+</div>
+<hr>
+
+
+
+<div class="container-feed">
+  <div class="album py-4 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for x in products %}
+        <div class="col ">
+          <div class="card shadow" style="width: 18rem;">
+            <img src="{{x.product_pic.url}}" class="card-img-top" alt="..." height="300x200">
+            <div class="card-body">
+              <h5 class="card-title text-center">{{x.title}}</h5>
+              <span><b>Price : {{x.price}}</b></span>
+              <br>
+              <br>
+              <a href="{% url 'buy' x.id %}" class="btn btn-primary">Buy</a>
+              
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock content %}
